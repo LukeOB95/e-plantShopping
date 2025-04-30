@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,12 @@ function ProductList({ onHomeClick }) {
 
     // Dispatch Object
     const dispatch = useDispatch();
+
+    // Cart Items Object
+    const cartItems = useSelector(state => state.cart.items);
+
+    // Total Quantity of Items
+    const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity , 0);
 
     const plantsArray = [
         {
